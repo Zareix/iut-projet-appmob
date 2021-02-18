@@ -15,10 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+// TODO : Change input type for password
 public class LoginActivity extends AppCompatActivity {
-    private static final int MIN_PASSWORD_LENGTH = 6;
-
     EditText mEmail, mPassword;
     Button buttonValidate;
     FirebaseAuth fAuth;
@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mPassword = findViewById(R.id.password);
-        mEmail = findViewById(R.id.login);
+        mPassword = findViewById(R.id.password_register);
+        mEmail = findViewById(R.id.email_register);
         buttonValidate = findViewById(R.id.buttonValidate);
 
         fAuth = FirebaseAuth.getInstance();
@@ -59,5 +59,16 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
     }
 }

@@ -6,7 +6,7 @@
     <string name="login">Entrez votre email</string>
     <string name="password">Entrez votre mot de passe</string>
     <string name="login_title">Login</string>
-    <string name="password_confirm">Confirmer votre mot de passe</string>
+    <string name="password_confirm">Confirmez à nouveau</string>
     <string name="register_title">S\'inscrire</string>
     <string name="nom_register">Entrez votre nom</string>
     <string name="prenom_register">Entrez votre prénom</string>

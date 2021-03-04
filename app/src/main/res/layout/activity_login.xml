@@ -30,8 +30,7 @@
         android:id="@+id/passwordLayout"
         android:layout_width="245dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="340dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLayout">
@@ -59,11 +58,22 @@
         android:id="@+id/buttonValidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="25dp"
         android:text="@string/validate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/redirect_to_register"
+        android:onClick="handleRedirectToRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonValidate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

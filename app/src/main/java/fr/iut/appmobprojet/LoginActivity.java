@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     }
                 });
             }
@@ -70,5 +71,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+    }
+
+    public void handleRedirectToRegister(View v){
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+        finish();
     }
 }

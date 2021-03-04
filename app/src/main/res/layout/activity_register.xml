@@ -7,6 +7,18 @@
     tools:context=".RegisterActivity"
     android:background="@drawable/register">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/username_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250px"
+        android:layout_marginRight="250px"
+        android:hint="@string/username_register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413"
+        tools:layout_editor_absoluteX="95dp" />
+
     <Button
         android:id="@+id/buttonValidate"
         android:layout_width="wrap_content"
@@ -19,65 +31,41 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.78" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/prenom_register"
+        android:id="@+id/password_confirm_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/prenom_register"
         android:layout_marginLeft="250px"
         android:layout_marginRight="250px"
+        android:hint="@string/password_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_bias="0.683"
+        tools:layout_editor_absoluteX="95dp" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/nom_register"
+        android:id="@+id/password_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nom_register"
         android:layout_marginLeft="250px"
         android:layout_marginRight="250px"
+        android:hint="@string/password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409"
+        app:layout_constraintVertical_bias="0.593"
         tools:layout_editor_absoluteX="95dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="250px"
+        android:layout_marginRight="250px"
         android:hint="@string/login"
-        android:layout_marginLeft="250px"
-        android:layout_marginRight="250px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.594"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:layout_marginLeft="250px"
-        android:layout_marginRight="250px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.682"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password_confirm_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password_confirm"
-        android:layout_marginLeft="250px"
-        android:layout_marginRight="250px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"
         tools:layout_editor_absoluteX="95dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

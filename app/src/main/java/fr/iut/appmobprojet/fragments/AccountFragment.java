@@ -1,19 +1,25 @@
 package fr.iut.appmobprojet.fragments;
 
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import fr.iut.appmobprojet.LoginActivity;
+import java.util.Objects;
+
 import fr.iut.appmobprojet.R;
 
 /**
@@ -70,9 +76,22 @@ public class AccountFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
-    public void disconnect(View v){
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getContext(), "Déconnecté", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        FirebaseFirestore fDb = FirebaseFirestore.getInstance();
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+
+        TextView username = (TextView) view.findViewById(R.id.nom_profile);
+
+        DocumentReference docRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    username.setText((String) document.get("username"));
+                }
+            }
+        });
     }
 }

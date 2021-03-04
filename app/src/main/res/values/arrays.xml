@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="products_type_array">
+        <item>Viande</item>
+        <item>Poisson</item>
+        <item>Féculent</item>
+        <item>Légumes</item>
+        <item>Fruit</item>
+        <item>Surgelés</item>
+        <item>Boulangerie</item>
+        <item>Patisserie</item>
+        <item>Sucreries</item>
+    </string-array>
+</resources>

@@ -8,8 +8,7 @@
     <string name="login_title">Login</string>
     <string name="password_confirm">Confirmez à nouveau</string>
     <string name="register_title">S\'inscrire</string>
-    <string name="nom_register">Entrez votre nom</string>
-    <string name="prenom_register">Entrez votre prénom</string>
+    <string name="username_register">Entrez votre identifiant</string>
     <string name="validate">Valider</string>
     <string name="redirect_to_register">Pas de compte ? Créez-en un ici !</string>
     <string name="disconnect_btn">Se déconnecter</string>

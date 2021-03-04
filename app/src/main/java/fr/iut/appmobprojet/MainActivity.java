@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import fr.iut.appmobprojet.fragments.AccountFragment;
@@ -54,5 +58,12 @@ public class MainActivity extends AppCompatActivity {
     private void makeCurrentFragment(Fragment f){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.fl_wrapper, f).commit();
+    }
+
+    public void disconnect(View v){
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(MainActivity.this, "Déconnecté", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 }

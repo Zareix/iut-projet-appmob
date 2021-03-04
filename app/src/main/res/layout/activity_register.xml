@@ -22,17 +22,17 @@
         android:id="@+id/nomLayout"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prenomLayout">
+        app:layout_constraintTop_toBottomOf="@+id/register_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nom_register"
+            android:id="@+id/username_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nom_register" />
+            android:hint="@string/username_register" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -98,22 +98,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordConfirmLayout" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/prenomLayout"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_title">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/prenom_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prenom_register" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

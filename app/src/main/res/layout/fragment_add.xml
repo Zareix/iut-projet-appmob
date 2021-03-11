@@ -15,9 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="40dp"
-            android:layout_marginBottom="564dp"
+            android:layout_marginBottom="584dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addProduct_titre"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="55dp"
                 android:hint="Titre du produit" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -37,9 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="40dp"
-            android:layout_marginBottom="514dp"
+            android:layout_marginBottom="534dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addProduct_marque"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="55dp"
                 android:hint="Marque du produit" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/textView"
-            />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="458dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

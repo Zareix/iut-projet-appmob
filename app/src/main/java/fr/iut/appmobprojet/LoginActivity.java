@@ -3,6 +3,7 @@ package fr.iut.appmobprojet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button buttonValidate;
     FirebaseAuth fAuth;
+
+    int cptRetour = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,13 @@ public class LoginActivity extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
+                        if(task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -76,5 +83,15 @@ public class LoginActivity extends AppCompatActivity {
     public void handleRedirectToRegister(View v){
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(LoginActivity.this, "Faites retour une nouvelle fois pour quitter", Toast.LENGTH_SHORT).show();
+        cptRetour++;
+        if(cptRetour >= 2) {
+            finish();
+            System.exit(0);
+        }
     }
 }

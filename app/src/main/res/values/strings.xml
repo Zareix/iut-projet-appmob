@@ -15,4 +15,11 @@
     <string name="validate">Valider</string>
     <string name="redirect_to_register">Pas de compte ? Créez-en un ici !</string>
     <string name="disconnect_btn">Se déconnecter</string>
+    <string name="username_profile_title">Identifiant : </string>
+    <string name="email_profile_title">Email : </string>
+    <string name="statut_profile_title">Statut : </string>
+    <string name="profile_btitle">Profil</string>
+    <string name="param_profile_btitle">Paramètres</string>
+    <string name="chat_profile_btitle">Chat</string>
+    <string name="notifications_profile_btitle">Notifications</string>
 </resources>

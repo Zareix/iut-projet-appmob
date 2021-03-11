@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.iut.appmobprojet.LoginActivity;
 import fr.iut.appmobprojet.R;
@@ -40,6 +44,9 @@ public class AccountFragment extends Fragment {
     private String mParam2;
 
     private String username;
+    private String email;
+    private String statut;
+    private List<String> allNotif = new ArrayList<>();
 
     public AccountFragment() {
         // Required empty public constructor
@@ -74,7 +81,6 @@ public class AccountFragment extends Fragment {
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
-
         DocumentReference docRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -82,6 +88,19 @@ public class AccountFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     username = (String) document.get("username");
+                    email = (String) document.get("email");
+                    statut = (String) document.get("statut");
+                }
+            }
+        });
+
+        DocumentReference notifRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName()).collection("notifications").document("r6WPqAT1MOPZ9yWEo1Yz");
+        notifRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        allNotif.add(document.getString("titre"));
                 }
             }
         });
@@ -97,8 +116,12 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         TextView usernameV = (TextView) view.findViewById(R.id.username_profile);
+        TextView emailV = (TextView) view.findViewById(R.id.email_profile);
+        TextView statutV = (TextView) view.findViewById(R.id.statut_profile);
 
         usernameV.setText(username);
+        emailV.setText(email);
+        statutV.setText(statut);
 
         view.findViewById(R.id.disconnectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,5 +132,14 @@ public class AccountFragment extends Fragment {
                 getActivity().finish();
             }
         });
+
+
+        LinearLayout notifications = view.findViewById(R.id.notification_layout_profile);
+
+        for (String n : allNotif) {
+            TextView newNotif = new TextView(getContext());
+            newNotif.setText(n);
+            notifications.addView(newNotif);
+        }
     }
 }

@@ -7,58 +7,58 @@
     tools:context=".fragments.AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/changeProfile"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/changeEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modifier votre profile"
+            android:hint="@string/change_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />/>
+            app:layout_constraintVertical_bias="0.2"/>
 
-        <TextView
-            android:id="@+id/param"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/changePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paramètres"
+            android:hint="@string/change_picture"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4" />/>
+            app:layout_constraintVertical_bias="0.4"/>
 
-        <TextView
-            android:id="@+id/chat"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/justificatifStatut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chat écrit"
+            android:hint="@string/change_justificatif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />/>
+            app:layout_constraintVertical_bias="0.6" />
 
-        <TextView
-            android:id="@+id/notifications"
+        <Button
+            android:id="@+id/buttonValidate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications"
+            android:paddingLeft="200px"
+            android:paddingRight="200px"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />/>
-
+            app:layout_constraintVertical_bias="0.78" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

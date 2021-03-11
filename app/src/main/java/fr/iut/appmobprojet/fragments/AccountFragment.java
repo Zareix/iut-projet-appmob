@@ -6,21 +6,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import fr.iut.appmobprojet.R;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,6 +77,7 @@ public class AccountFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -81,16 +92,32 @@ public class AccountFragment extends Fragment {
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
-        TextView username = (TextView) view.findViewById(R.id.nom_profile);
+        EditText mEmail = view.findViewById(R.id.changeEmail);
+        EditText mPhoto = view.findViewById(R.id.changePicture);
+        EditText mJustificatif = view.findViewById(R.id.justificatifStatut);
+        Button buttonValidate = (Button) view.findViewById(R.id.buttonValidate);
 
-        DocumentReference docRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        buttonValidate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    username.setText((String) document.get("username"));
-                }
+            public void onClick(View v) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(user.getDisplayName())
+                        .build();
+
+                Map<String, Object> data = new HashMap<>();
+                data.put("email", mEmail);
+                data.put("imageUrl", "to be defined");
+                data.put("justificatifStatut", mJustificatif);
+                fDb.collection("users").document(user.getDisplayName()).set(data)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // success
+                            }
+                        })
+                ;
+
             }
         });
     }

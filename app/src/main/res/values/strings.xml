@@ -12,4 +12,5 @@
     <string name="validate">Valider</string>
     <string name="redirect_to_register">Pas de compte ? Créez-en un ici !</string>
     <string name="disconnect_btn">Se déconnecter</string>
+    <string name="username_profile_title">Identifiant : </string>
 </resources>

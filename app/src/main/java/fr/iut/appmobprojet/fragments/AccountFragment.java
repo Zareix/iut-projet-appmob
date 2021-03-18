@@ -156,19 +156,31 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(user.getDisplayName())
-                        .build();
-
                 Map<String, Object> data = new HashMap<>();
-                data.put("email", mEmail.getText());
-                data.put("imageUrl", "to be defined");
-                data.put("justificatifStatut", mJustificatif.getText());
-                FirebaseFirestore.getInstance().collection("users").document(user.getDisplayName()).set(data)
+
+                if (!mEmail.getText().toString().equals("")) {
+                    data.put("email", mEmail.getText().toString());
+                    user.updateEmail((String) data.get("email"))
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    // complete
+                                }
+                            });
+                    emailV.setText((String) data.get("email"));
+                }
+
+                if (!mPhoto.getText().toString().equals(""))
+                    data.put("imageUrl", "to be defined");
+
+                if (!mJustificatif.getText().toString().equals(""))
+                    data.put("justificatifStatut", mJustificatif.getText().toString());
+
+                FirebaseFirestore.getInstance().collection("users").document(user.getDisplayName()).update(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                // success
+                                Toast.makeText(getContext(), "Informations modifiées", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

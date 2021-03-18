@@ -7,13 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +27,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.iut.appmobprojet.LoginActivity;
 import fr.iut.appmobprojet.R;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,8 +105,8 @@ public class AccountFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        allNotif.add(document.getString("titre"));
+                    DocumentSnapshot document = task.getResult();
+                    allNotif.add(document.getString("titre"));
                 }
             }
         });
@@ -126,14 +121,36 @@ public class AccountFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        TextView usernameV = (TextView) view.findViewById(R.id.username_profile);
-        TextView emailV = (TextView) view.findViewById(R.id.email_profile);
-        TextView statutV = (TextView) view.findViewById(R.id.statut_profile);
+        TextView usernameV = view.findViewById(R.id.username_profil);
+        TextView emailV = view.findViewById(R.id.email_profil);
+        TextView statutV = view.findViewById(R.id.statut_profil);
 
-        EditText mEmail = view.findViewById(R.id.changeEmail);
-        EditText mPhoto = view.findViewById(R.id.changePicture);
-        EditText mJustificatif = view.findViewById(R.id.justificatifStatut);
-        Button buttonValidate = (Button) view.findViewById(R.id.buttonValidate);
+        EditText mEmail = view.findViewById(R.id.change_email);
+        EditText mPhoto = view.findViewById(R.id.change_picture);
+        EditText mJustificatif = view.findViewById(R.id.justificatif_statut);
+        Button buttonValidate = view.findViewById(R.id.validate_btn);
+
+        view.findViewById(R.id.disconnect_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), "Déconnecté", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        usernameV.setText(username);
+        emailV.setText(email);
+        statutV.setText(statut);
+
+        /*LinearLayout notifications = view.findViewById(R.id.notification_layout_profile);
+
+        for (String n : allNotif) {
+            TextView newNotif = new TextView(getContext());
+            newNotif.setText(n);
+            notifications.addView(newNotif);
+        }*/
 
         buttonValidate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,39 +161,17 @@ public class AccountFragment extends Fragment {
                         .build();
 
                 Map<String, Object> data = new HashMap<>();
-                data.put("email", mEmail);
+                data.put("email", mEmail.getText());
                 data.put("imageUrl", "to be defined");
-                data.put("justificatifStatut", mJustificatif);
-                fDb.collection("users").document(user.getDisplayName()).set(data)
+                data.put("justificatifStatut", mJustificatif.getText());
+                FirebaseFirestore.getInstance().collection("users").document(user.getDisplayName()).set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 // success
                             }
-                        })
-                ;
-
-        usernameV.setText(username);
-        emailV.setText(email);
-        statutV.setText(statut);
-
-        view.findViewById(R.id.disconnectBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getContext(), "Déconnecté", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), LoginActivity.class));
-                getActivity().finish();
+                        });
             }
         });
-
-
-        LinearLayout notifications = view.findViewById(R.id.notification_layout_profile);
-
-        for (String n : allNotif) {
-            TextView newNotif = new TextView(getContext());
-            newNotif.setText(n);
-            notifications.addView(newNotif);
-        }
     }
 }

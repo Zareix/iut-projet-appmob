@@ -12,54 +12,132 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/changeEmail"
+            android:id="@+id/change_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/change_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"/>
+            app:layout_constraintVertical_bias="0.52" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/changePicture"
+            android:id="@+id/change_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="@string/change_picture"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4"/>
+            app:layout_constraintTop_toBottomOf="@+id/change_email" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/justificatifStatut"
+            android:id="@+id/justificatif_statut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="@string/change_justificatif"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintTop_toBottomOf="@+id/change_picture" />
 
         <Button
-            android:id="@+id/buttonValidate"
+            android:id="@+id/validate_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="200px"
-            android:paddingRight="200px"
+            android:layout_marginTop="16dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.78" />
+            app:layout_constraintTop_toBottomOf="@+id/justificatif_statut"
+            tools:text="@string/validate" />
+
+        <TextView
+            android:id="@+id/profile_btitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/profil_btitle"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/username_profil_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+
+        <TextView
+            android:id="@+id/username_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/empty_info"
+            app:layout_constraintStart_toEndOf="@+id/profile_title_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+
+        <TextView
+            android:id="@+id/email_profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/email_profil_title"
+            app:layout_constraintStart_toStartOf="@+id/profile_title_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_title_name" />
+
+        <TextView
+            android:id="@+id/email_profil"
+            android:layout_width="61dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/empty_info"
+            app:layout_constraintStart_toEndOf="@+id/email_profile_title"
+            app:layout_constraintTop_toBottomOf="@+id/username_profil" />
+
+        <TextView
+            android:id="@+id/statut_profil_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/statut_profile_title"
+            app:layout_constraintStart_toEndOf="@+id/profile_title_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+
+        <TextView
+            android:id="@+id/statut_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/empty_info"
+            app:layout_constraintStart_toEndOf="@+id/statut_profil_title"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+
+        <Button
+            android:id="@+id/disconnect_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/disconnect_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_profile_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

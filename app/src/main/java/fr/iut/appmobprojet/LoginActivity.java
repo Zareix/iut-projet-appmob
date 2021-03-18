@@ -3,7 +3,6 @@ package fr.iut.appmobprojet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mPassword = findViewById(R.id.password_register);
         mEmail = findViewById(R.id.email_register);
-        buttonValidate = findViewById(R.id.buttonValidate);
+        buttonValidate = findViewById(R.id.validate_btn);
 
         fAuth = FirebaseAuth.getInstance();
 

@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.email_register);
         mPassword = findViewById(R.id.password_register);
         mPasswordConfirm = findViewById(R.id.password_confirm_register);
-        buttonValidate = findViewById(R.id.buttonValidate);
+        buttonValidate = findViewById(R.id.validate_btn);
 
         fAuth = FirebaseAuth.getInstance();
         fDb = FirebaseFirestore.getInstance();

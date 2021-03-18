@@ -115,6 +115,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         LinearLayout scrollVProducts = view.findViewById(R.id.all_products);
+        scrollVProducts.removeAllViews();
         for (Product p : allProducts) {
             TextView product = new TextView(getContext());
             product.setText(p.getTitre());

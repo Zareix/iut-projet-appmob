@@ -57,13 +57,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void makeCurrentFragment(Fragment f){
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.fl_wrapper, f).commit();
-    }
-
-    public void disconnect(View v){
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(MainActivity.this, "Déconnecté", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+        fm.beginTransaction().replace(R.id.fl_wrapper, f, "currentFragment").commit();
     }
 }

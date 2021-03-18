@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,11 @@ public class AccountFragment extends Fragment {
                     username = (String) document.get("username");
                     email = (String) document.get("email");
                     statut = (String) document.get("statut");
+                    Fragment currentFragment = getFragmentManager().findFragmentByTag("currentFragment");
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.detach(currentFragment);
+                    fragmentTransaction.attach(currentFragment);
+                    fragmentTransaction.commit();
                 }
             }
         });
@@ -121,6 +127,7 @@ public class AccountFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         TextView usernameV = view.findViewById(R.id.username_profil);
         TextView emailV = view.findViewById(R.id.email_profil);
         TextView statutV = view.findViewById(R.id.statut_profil);

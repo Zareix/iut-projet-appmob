@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            allProducts.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 allProducts.add(new Product(document.getDouble("codePostal"), document.getDate("dateAjout"), document.getString("donneur"), document.getString("marque"), document.getDate("peremption"), document.getString("titre"), document.getString("typeNourriture")));
                             }
@@ -115,7 +116,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         LinearLayout scrollVProducts = view.findViewById(R.id.all_products);
-        scrollVProducts.removeAllViews();
         for (Product p : allProducts) {
             TextView product = new TextView(getContext());
             product.setText(p.getTitre());

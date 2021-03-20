@@ -1,11 +1,6 @@
 package fr.iut.appmobprojet.fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -99,7 +98,7 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
 
 
         Map<String, Object> data = new HashMap<>();
-        data.put("codePostal", 75016);
+        data.put("codePostal", "75016");
         data.put("dateAjout", new Timestamp(new Date()));
         data.put("donneur", "william");
         data.put("marque", "Panzani");

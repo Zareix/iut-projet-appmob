@@ -1,19 +1,17 @@
 package fr.iut.appmobprojet;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import fr.iut.appmobprojet.data.model.Product;
 import fr.iut.appmobprojet.fragments.AccountFragment;
 import fr.iut.appmobprojet.fragments.AddFragment;
 import fr.iut.appmobprojet.fragments.HomeFragment;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         makeCurrentFragment(homeF);
         BottomNavigationView navbar = findViewById(R.id.bottom_navbar);
         navbar.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.ic_home:
                     makeCurrentFragment(homeF);
                     break;
@@ -55,8 +53,18 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param f
      */
-    private void makeCurrentFragment(Fragment f){
+    private void makeCurrentFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.fl_wrapper, f, "currentFragment").commit();
+    }
+
+    public void reserver(Product p) {
+        FirebaseFirestore fDb = FirebaseFirestore.getInstance();
+        DocumentReference docRef = fDb.collection("products").document(p.getId());
+        if (docRef.get().getResult().getDocumentReference("reservePar") == null) {
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Ce produit est déjà réservé", Toast.LENGTH_SHORT).show();
+        }
     }
 }

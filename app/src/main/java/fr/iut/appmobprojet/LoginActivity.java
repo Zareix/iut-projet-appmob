@@ -1,8 +1,5 @@
 package fr.iut.appmobprojet;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity {
                 String password = mPassword.getText().toString().trim();
                 String email = mEmail.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Une adresse mail est nécessaire");
                     return;
                 }
 
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Un mot de passe est nécessaire");
                     return;
                 }
@@ -55,8 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
+                            getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
@@ -73,13 +74,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = fAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
     }
 
-    public void handleRedirectToRegister(View v){
+    public void handleRedirectToRegister(View v) {
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         finish();
     }
@@ -88,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(LoginActivity.this, "Faites retour une nouvelle fois pour quitter", Toast.LENGTH_SHORT).show();
         cptRetour++;
-        if(cptRetour >= 2) {
+        if (cptRetour >= 2) {
             finish();
             System.exit(0);
         }

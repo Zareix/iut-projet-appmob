@@ -1,35 +1,34 @@
 package fr.iut.appmobprojet.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fr.iut.appmobprojet.LoginActivity;
 import fr.iut.appmobprojet.R;
@@ -86,9 +85,8 @@ public class AccountFragment extends Fragment {
         }
 
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
-        DocumentReference docRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName());
+        DocumentReference docRef = fDb.collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -106,13 +104,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        DocumentReference notifRef = fDb.collection("users").document(fAuth.getCurrentUser().getDisplayName()).collection("notifications").document("r6WPqAT1MOPZ9yWEo1Yz");
+        DocumentReference notifRef = fDb.collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).collection("notifications").document("r6WPqAT1MOPZ9yWEo1Yz");
         notifRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    allNotif.add(document.getString("titre"));
+                    allNotif.add(document.getString("reservePar"));
                 }
             }
         });
@@ -183,7 +181,7 @@ public class AccountFragment extends Fragment {
                 if (!mJustificatif.getText().toString().equals(""))
                     data.put("justificatifStatut", mJustificatif.getText().toString());
 
-                FirebaseFirestore.getInstance().collection("users").document(user.getDisplayName()).update(data)
+                FirebaseFirestore.getInstance().collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).update(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

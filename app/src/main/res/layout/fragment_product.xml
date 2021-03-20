@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titre_product_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/separator_item_product"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+
+            <TextView
+                android:id="@+id/marque_product_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/secondary_text_light"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+
+            <TextView
+                android:id="@+id/categorie_list_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/tertiary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/categorie_title_list_item"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+
+            <TextView
+                android:id="@+id/categorie_title_list_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/category"
+                android:textColor="@android:color/secondary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/marque_product_item"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+
+            <TextView
+                android:id="@+id/donneur_title_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/donated_by"
+                android:textColor="@android:color/secondary_text_light"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
+
+            <TextView
+                android:id="@+id/donneur_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/empty_info"
+                android:textAllCaps="true"
+                android:textColor="@android:color/tertiary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/donneur_title_item_product"
+                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
+
+            <TextView
+                android:id="@+id/added_date_title_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/added_the"
+                android:textColor="@android:color/secondary_text_light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/marque_product_item" />
+
+            <TextView
+                android:id="@+id/added_date_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/tertiary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/added_date_title_item_product"
+                app:layout_constraintTop_toBottomOf="@+id/marque_product_item" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/permeates_the"
+                android:textColor="@android:color/secondary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/added_date_item_product"
+                app:layout_constraintTop_toBottomOf="@+id/marque_product_item" />
+
+            <TextView
+                android:id="@+id/permeate_date_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/tertiary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/marque_product_item" />
+
+            <TextView
+                android:id="@+id/codepostal_title_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/code_postal"
+                android:textColor="@android:color/secondary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/donneur_item_product"
+                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
+
+            <TextView
+                android:id="@+id/code_postal_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/empty_info"
+                android:textColor="@android:color/tertiary_text_light"
+                app:layout_constraintStart_toEndOf="@+id/codepostal_title_item_product"
+                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
+
+            <Button
+                android:id="@+id/reserver_btn_item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/reserver"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

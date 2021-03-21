@@ -24,9 +24,9 @@
     <string name="chat_profile_btitle">Chat</string>
     <string name="notifications_profil_btitle">Notifications</string>
     <string name="empty_info">----</string>
-    <string name="added_the">Ajouté le :</string>
+    <string name="added_the">Ajouté le</string>
     <string name="donated_by">Donné par :</string>
-    <string name="permeates_the">Périme le :</string>
+    <string name="permeates_the">Périme le</string>
     <string name="category">Catégorie :</string>
     <string name="code_postal">Code Postal :</string>
     <string name="brand">Marque :</string>

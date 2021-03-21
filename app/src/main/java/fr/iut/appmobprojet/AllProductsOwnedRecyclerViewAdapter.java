@@ -19,6 +19,9 @@ import java.util.List;
 
 import fr.iut.appmobprojet.data.model.Product;
 
+/**
+ * Adapter permettant d'afficher tous les produits possédés (page profile)
+ */
 public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<AllProductsOwnedRecyclerViewAdapter.ViewHolder> {
 
     private final List<Product> mValues;

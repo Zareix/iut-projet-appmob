@@ -7,10 +7,26 @@
     android:background="@drawable/register"
     tools:context=".RegisterActivity">
 
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="252dp"
+        android:background="@drawable/back"
+        android:text="@string/register_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username_register"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/back"
         android:hint="@string/username_register"
         android:textColor="@android:color/black"
         android:textColorHighlight="@android:color/darker_gray"
@@ -18,26 +34,9 @@
         android:textColorLink="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_register"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/login"
-        android:inputType="textEmailAddress"
-        android:textColor="@android:color/black"
-        android:textColorHighlight="@android:color/darker_gray"
-        android:textColorHint="@android:color/darker_gray"
-        android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_register"
@@ -45,33 +44,16 @@
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:background="@drawable/back"
         android:textColor="@android:color/black"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password_confirm_register"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/password_confirm"
-        android:inputType="textPassword"
-        android:textColor="@android:color/black"
-        android:textColorHighlight="@android:color/darker_gray"
-        android:textColorHint="@android:color/darker_gray"
-        android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintVertical_bias="0.647" />
 
     <Button
         android:id="@+id/validate_btn"
@@ -84,12 +66,46 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
+        app:layout_constraintVertical_bias="0.834" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/password_confirm_register"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_confirm"
+        android:inputType="textPassword"
+        android:background="@drawable/back"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColorLink="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.737" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email_register"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back"
+        android:hint="@string/login"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/darker_gray"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColorLink="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="197dp"
-        android:layout_height="188dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -15,8 +15,10 @@
             android:id="@+id/profile_btitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_marginTop="32dp"
             android:text="@string/profil_btitle"
+            android:background="@drawable/back"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -29,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/back"
             android:text="@string/username_profil_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
@@ -39,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/back"
             android:text="@string/empty_info"
             app:layout_constraintStart_toEndOf="@+id/profile_title_name"
             app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
@@ -48,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:background="@drawable/back"
             android:text="@string/email_profil_title"
             app:layout_constraintStart_toStartOf="@+id/profile_title_name"
             app:layout_constraintTop_toBottomOf="@+id/profile_title_name" />
@@ -58,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/back"
             android:text="@string/empty_info"
             app:layout_constraintStart_toEndOf="@+id/email_profile_title"
             app:layout_constraintTop_toBottomOf="@+id/username_profil" />
@@ -68,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="110dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/back"
             android:text="@string/statut_profile_title"
             app:layout_constraintStart_toEndOf="@+id/profile_title_name"
             app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
@@ -78,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/back"
             android:text="@string/empty_info"
             app:layout_constraintStart_toEndOf="@+id/statut_profil_title"
             app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
@@ -124,6 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/all_owned_product"
+            android:background="@drawable/back"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

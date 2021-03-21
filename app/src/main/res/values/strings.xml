@@ -5,9 +5,9 @@
     <string name="nav_home">Home</string>
     <string name="login">Entrez votre email</string>
     <string name="password">Entrez votre mot de passe</string>
-    <string name="login_title">Login</string>
+    <string name="login_title">Se connecter</string>
     <string name="password_confirm">Confirmez à nouveau</string>
-    <string name="register_title">S\'inscrire</string>
+    <string name="register_title">S'inscrire</string>
     <string name="username_register">Entrez votre identifiant</string>
     <string name="change_email">Modifier votre email</string>
     <string name="change_picture">Modifier votre photo</string>

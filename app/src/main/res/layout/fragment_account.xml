@@ -15,6 +15,7 @@
             android:id="@+id/profile_btitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_marginTop="32dp"
             android:text="@string/profil_btitle"
             android:textSize="24sp"

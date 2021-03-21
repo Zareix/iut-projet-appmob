@@ -19,19 +19,15 @@ import java.util.List;
 import fr.iut.appmobprojet.data.model.Product;
 
 /**
- * A fragment representing a list of Items.
+ * Fragment pour afficher l'ensemble des produits
  */
 public class AllProductsFragment extends Fragment {
 
     private static final String ARG_ISDONNEUR = "isDonneur";
     private boolean isDonneur;
 
-    private List<Product> allProducts = new ArrayList<>();
+    private final List<Product> allProducts = new ArrayList<>();
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public AllProductsFragment() {
     }
 
@@ -72,7 +68,9 @@ public class AllProductsFragment extends Fragment {
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
 
         if (isDonneur) {
-            fDb.collection("products").whereEqualTo("donneur", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).get()
+            fDb.collection("products")
+                    .whereEqualTo("donneur", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null))
+                    .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             allProducts.clear();

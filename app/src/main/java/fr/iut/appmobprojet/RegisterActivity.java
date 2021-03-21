@@ -14,16 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO : change input type for password
+/**
+ * Activité d'inscription à l'application
+ */
 public class RegisterActivity extends AppCompatActivity {
     private static final int MIN_PASSWORD_LENGTH = 6;
 
@@ -84,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
+<<<<<<< HEAD
             fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -104,6 +110,36 @@ public class RegisterActivity extends AppCompatActivity {
                         data.put("statut", "to be defined");
                         fDb.collection("users").document(username).set(data)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+=======
+                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(username)
+                                    .build();
+
+                            //TODO : Add user info to DB
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("username", username);
+                            data.put("email", email);
+                            data.put("createdAt", Timestamp.now());
+                            data.put("imageUrl", "to be defined");
+                            data.put("justificatifStatut", "to be defined");
+                            data.put("statut", "to be defined");
+                            fDb.collection("users").document(username).set(data)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // success
+                                        }
+                                    });
+
+                            if (user != null) {
+                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+>>>>>>> parent of 8de8d62 (Revert "cleanup")
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         // success

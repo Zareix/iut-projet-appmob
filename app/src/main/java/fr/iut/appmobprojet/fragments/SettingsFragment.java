@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,14 +23,19 @@ import java.util.Map;
 import fr.iut.appmobprojet.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment correspondant à la page des paramètres
  */
 public class SettingsFragment extends Fragment {
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 8de8d62 (Revert "cleanup")
     public SettingsFragment() {
-        // Required empty public constructor
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 8de8d62 (Revert "cleanup")
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
     }
@@ -46,7 +48,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
@@ -65,10 +66,14 @@ public class SettingsFragment extends Fragment {
 
             if (!mEmail.getText().toString().equals("")) {
                 data.put("email", mEmail.getText().toString());
+<<<<<<< HEAD
                 user.updateEmail((String) data.get("email"))
                         .addOnCompleteListener(task -> {
                             // complete
                         });
+=======
+                user.updateEmail((String) data.get("email"));
+>>>>>>> parent of 8de8d62 (Revert "cleanup")
             }
 
             if (!mPhoto.getText().toString().equals(""))

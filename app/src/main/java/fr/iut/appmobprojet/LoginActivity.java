@@ -17,7 +17,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// TODO : Change input type for password
+/**
+ * Activité de connexion à l'application
+ */
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button buttonValidate;
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 mEmail.setError("Une adresse mail est nécessaire");
                 return;
             }
+<<<<<<< HEAD
 
             if (TextUtils.isEmpty(password)) {
                 mPassword.setError("Un mot de passe est nécessaire");
@@ -61,6 +64,22 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
                     }
+=======
+
+            if (TextUtils.isEmpty(password)) {
+                mPassword.setError("Un mot de passe est nécessaire");
+                return;
+            }
+
+            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
+                    getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
+>>>>>>> parent of 8de8d62 (Revert "cleanup")
                 }
             });
         });
@@ -69,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));

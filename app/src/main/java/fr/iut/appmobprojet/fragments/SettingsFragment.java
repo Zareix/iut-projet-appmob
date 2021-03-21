@@ -59,37 +59,26 @@ public class SettingsFragment extends Fragment {
         EditText mJustificatif = view.findViewById(R.id.justificatif_statut);
         Button buttonValidate = view.findViewById(R.id.validate_btn3);
 
-        buttonValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Map<String, Object> data = new HashMap<>();
+        buttonValidate.setOnClickListener(v -> {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Map<String, Object> data = new HashMap<>();
 
-                if (!mEmail.getText().toString().equals("")) {
-                    data.put("email", mEmail.getText().toString());
-                    user.updateEmail((String) data.get("email"))
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    // complete
-                                }
-                            });
-                }
-
-                if (!mPhoto.getText().toString().equals(""))
-                    data.put("imageUrl", "to be defined");
-
-                if (!mJustificatif.getText().toString().equals(""))
-                    data.put("justificatifStatut", mJustificatif.getText().toString());
-
-                FirebaseFirestore.getInstance().collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).update(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getContext(), "Informations modifiées", Toast.LENGTH_SHORT).show();
-                            }
+            if (!mEmail.getText().toString().equals("")) {
+                data.put("email", mEmail.getText().toString());
+                user.updateEmail((String) data.get("email"))
+                        .addOnCompleteListener(task -> {
+                            // complete
                         });
             }
+
+            if (!mPhoto.getText().toString().equals(""))
+                data.put("imageUrl", "to be defined");
+
+            if (!mJustificatif.getText().toString().equals(""))
+                data.put("justificatifStatut", mJustificatif.getText().toString());
+
+            FirebaseFirestore.getInstance().collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).update(data)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Informations modifiées", Toast.LENGTH_SHORT).show());
         });
     }
 }

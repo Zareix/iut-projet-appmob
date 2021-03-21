@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Objet java représentant un produit tel qu'ils sont stockés dans Firestore
+ */
 public class Product {
     private static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
@@ -85,4 +88,8 @@ public class Product {
         return categorie;
     }
 
+    @Override
+    public String toString() {
+        return titre + " par " + donneur;
+    }
 }

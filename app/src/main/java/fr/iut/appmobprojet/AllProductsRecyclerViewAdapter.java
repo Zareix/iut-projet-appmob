@@ -21,6 +21,9 @@ import java.util.Map;
 
 import fr.iut.appmobprojet.data.model.Product;
 
+/**
+ * Adapter permettant d'afficher tous les produits non possédés (page d'accueil)
+ */
 public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProductsRecyclerViewAdapter.ViewHolder> {
 
     private final List<Product> mValues;

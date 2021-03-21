@@ -17,7 +17,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-// TODO : Change input type for password
+/**
+ * Activité de connexion à l'application
+ */
 public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button buttonValidate;
@@ -36,43 +38,36 @@ public class LoginActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
 
-        buttonValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String password = mPassword.getText().toString().trim();
-                String email = mEmail.getText().toString().trim();
+        buttonValidate.setOnClickListener(v -> {
+            String password = mPassword.getText().toString().trim();
+            String email = mEmail.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("Une adresse mail est nécessaire");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Un mot de passe est nécessaire");
-                    return;
-                }
-
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
-                            getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            if (TextUtils.isEmpty(email)) {
+                mEmail.setError("Une adresse mail est nécessaire");
+                return;
             }
+
+            if (TextUtils.isEmpty(password)) {
+                mPassword.setError("Un mot de passe est nécessaire");
+                return;
+            }
+
+            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
+                    getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));

@@ -13,6 +13,7 @@
     <string name="change_picture">Modifier votre photo</string>
     <string name="change_justificatif">Modifier votre justificatif de statut</string>
     <string name="validate">Valider</string>
+    <string name="slogan">Parce qu'aider n'attend pas !</string>
     <string name="redirect_to_register">Pas de compte ? Créez-en un ici !</string>
     <string name="disconnect_btn">Se déconnecter</string>
     <string name="username_profil_title">Identifiant : </string>

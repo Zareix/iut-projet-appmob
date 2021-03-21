@@ -8,12 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -46,25 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                 mEmail.setError("Une adresse mail est nécessaire");
                 return;
             }
-<<<<<<< HEAD
-
-            if (TextUtils.isEmpty(password)) {
-                mPassword.setError("Un mot de passe est nécessaire");
-                return;
-            }
-
-            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
-                        getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
-                    }
-=======
 
             if (TextUtils.isEmpty(password)) {
                 mPassword.setError("Un mot de passe est nécessaire");
@@ -79,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Identifiant inconnu", Toast.LENGTH_SHORT).show();
->>>>>>> parent of 8de8d62 (Revert "cleanup")
                 }
             });
         });

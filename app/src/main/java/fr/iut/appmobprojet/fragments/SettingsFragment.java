@@ -26,16 +26,9 @@ import fr.iut.appmobprojet.R;
  * Fragment correspondant à la page des paramètres
  */
 public class SettingsFragment extends Fragment {
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 8de8d62 (Revert "cleanup")
     public SettingsFragment() {
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 8de8d62 (Revert "cleanup")
+    
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
     }
@@ -66,14 +59,7 @@ public class SettingsFragment extends Fragment {
 
             if (!mEmail.getText().toString().equals("")) {
                 data.put("email", mEmail.getText().toString());
-<<<<<<< HEAD
-                user.updateEmail((String) data.get("email"))
-                        .addOnCompleteListener(task -> {
-                            // complete
-                        });
-=======
                 user.updateEmail((String) data.get("email"));
->>>>>>> parent of 8de8d62 (Revert "cleanup")
             }
 
             if (!mPhoto.getText().toString().equals(""))

@@ -3,7 +3,6 @@ package fr.iut.appmobprojet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,7 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-<<<<<<< HEAD
             fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -104,42 +100,12 @@ public class RegisterActivity extends AppCompatActivity {
                         Map<String, Object> data = new HashMap<>();
                         data.put("username", username);
                         data.put("email", email);
-                        data.put("createdAt", "to be defined");
+                        data.put("createdAt", Timestamp.now());
                         data.put("imageUrl", "to be defined");
                         data.put("justificatifStatut", "to be defined");
                         data.put("statut", "to be defined");
                         fDb.collection("users").document(username).set(data)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
-=======
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = fAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username)
-                                    .build();
-
-                            //TODO : Add user info to DB
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("username", username);
-                            data.put("email", email);
-                            data.put("createdAt", Timestamp.now());
-                            data.put("imageUrl", "to be defined");
-                            data.put("justificatifStatut", "to be defined");
-                            data.put("statut", "to be defined");
-                            fDb.collection("users").document(username).set(data)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // success
-                                        }
-                                    });
-
-                            if (user != null) {
-                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
->>>>>>> parent of 8de8d62 (Revert "cleanup")
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         // success
@@ -147,12 +113,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 });
 
                         if (user != null) {
-                            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                    }
+                            user.updateProfile(profileUpdates).addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 }
                             });
                         }

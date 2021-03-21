@@ -43,7 +43,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mTitleView.setText(mValues.get(position).getTitre());
-        if(mValues.get(position).getMarque().equals("")){
+        if (mValues.get(position).getMarque().equals("")) {
             holder.mMarqueTitleView.setVisibility(View.GONE);
         } else
             holder.mMarqueView.setText(mValues.get(position).getMarque());
@@ -70,7 +70,6 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
                     fDb.collection("products").document(p.getId()).update(data).addOnSuccessListener(aVoid -> {
                         //Toast.makeText(v.getContext(), "Produit réservé !", Toast.LENGTH_SHORT).show();
                         Snackbar.make(v.getRootView().findViewById(R.id.home), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v)).show();
-                        notifyDonneur(p, v);
                     });
                 } else {
                     Toast.makeText(v.getContext(), "Ce produit est déjà réservé", Toast.LENGTH_SHORT).show();
@@ -79,26 +78,14 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         });
     }
 
-    public void notifyDonneur(Product p, View v) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("reservePar", v.getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
-        data.put("produitReserve", p.getId());
-        FirebaseFirestore.getInstance().collection("users").document(p.getDonneur()).collection("notifications").document(p.getDonneur() + p.getId()).set(data);
-    }
-
     public void annulerReservation(Product p, View v) {
         Map<String, Object> data = new HashMap<>();
         data.put("reservePar", null);
         FirebaseFirestore.getInstance().collection("products").document(p.getId()).update(data).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(v.getContext(), "Reservation annulée", Toast.LENGTH_SHORT).show();
-                annulerNotif(p);
             }
         });
-    }
-
-    public void annulerNotif(Product p) {
-        FirebaseFirestore.getInstance().collection("users").document(p.getDonneur()).collection("notifications").document(p.getDonneur() + p.getId()).delete();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

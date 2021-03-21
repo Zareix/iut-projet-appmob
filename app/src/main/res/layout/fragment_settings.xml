@@ -30,6 +30,8 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/back"
             android:hint="@string/change_justificatif"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +44,8 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/back"
             android:hint="@string/change_picture"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +58,8 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/back"
             android:hint="@string/change_email"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,28 +67,29 @@
 
         <TextView
             android:id="@+id/btitle_param"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="296dp"
             android:background="@drawable/back"
-            android:layout_marginTop="32dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
             android:text="@string/settings"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.024"
+            app:layout_constraintVertical_bias="0.164"
             app:srcCompat="@drawable/freelicious" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

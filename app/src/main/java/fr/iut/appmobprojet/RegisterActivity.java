@@ -14,21 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Activité d'inscription à l'application
- */
+// TODO : change input type for password
 public class RegisterActivity extends AppCompatActivity {
     private static final int MIN_PASSWORD_LENGTH = 6;
 
@@ -105,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Map<String, Object> data = new HashMap<>();
                             data.put("username", username);
                             data.put("email", email);
-                            data.put("createdAt", Timestamp.now());
+                            data.put("createdAt", "to be defined");
                             data.put("imageUrl", "to be defined");
                             data.put("justificatifStatut", "to be defined");
                             data.put("statut", "to be defined");

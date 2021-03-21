@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button buttonValidate;
     FirebaseAuth fAuth;
+    TextView mRedirectRegister;
 
     int cptRetour = 0;
 
@@ -31,8 +33,14 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.password_register);
         mEmail = findViewById(R.id.email_register);
         buttonValidate = findViewById(R.id.validate_btn);
+        mRedirectRegister = findViewById(R.id.createAccount);
 
         fAuth = FirebaseAuth.getInstance();
+
+        mRedirectRegister.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            finish();
+        });
 
         buttonValidate.setOnClickListener(v -> {
             String password = mPassword.getText().toString().trim();

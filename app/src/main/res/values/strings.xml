@@ -7,7 +7,7 @@
     <string name="password">Entrez votre mot de passe</string>
     <string name="login_title">Se connecter</string>
     <string name="password_confirm">Confirmez à nouveau</string>
-    <string name="register_title">S'inscrire</string>
+    <string name="register_title">S\'inscrire</string>
     <string name="username_register">Entrez votre identifiant</string>
     <string name="change_email">Modifier votre email</string>
     <string name="change_picture">Modifier votre photo</string>
@@ -39,4 +39,5 @@
     <string name="contact_receiver">Contacter le receveur</string>
     <string name="channel_name">a channel</string>
     <string name="channel_description">a channel description</string>
+    <string name="logo">Logo freelicious</string>
 </resources>

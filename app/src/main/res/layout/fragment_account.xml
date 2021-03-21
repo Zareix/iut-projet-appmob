@@ -17,92 +17,104 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_marginTop="32dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
             android:text="@string/profil_btitle"
             android:background="@drawable/back"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="5dp"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/profile_title_name"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle">
+
+            <TextView
+                android:id="@+id/profile_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username_profil_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/username_profil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/empty_info"
+                app:layout_constraintStart_toEndOf="@+id/profile_title_name"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="5dp"
-            android:text="@string/username_profil_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
-        <TextView
-            android:id="@+id/username_profil"
+            <TextView
+                android:id="@+id/email_profile_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_profil_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/email_profil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/empty_info"
+                app:layout_constraintStart_toEndOf="@+id/email_profile_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="5dp"
-            android:text="@string/empty_info"
-            app:layout_constraintStart_toEndOf="@+id/profile_title_name"
-            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+            android:background="@drawable/back"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/profile_btitle">
 
-        <TextView
-            android:id="@+id/email_profile_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="@string/email_profil_title"
-            app:layout_constraintStart_toStartOf="@+id/profile_title_name"
-            app:layout_constraintTop_toBottomOf="@+id/profile_title_name" />
+            <TextView
+                android:id="@+id/statut_profil_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statut_profile_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/email_profil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="@string/empty_info"
-            app:layout_constraintStart_toEndOf="@+id/email_profile_title"
-            app:layout_constraintTop_toBottomOf="@+id/username_profil" />
-
-        <TextView
-            android:id="@+id/statut_profil_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="@string/statut_profile_title"
-            app:layout_constraintStart_toEndOf="@+id/profile_title_name"
-            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
-
-        <TextView
-            android:id="@+id/statut_profil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/back"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="@string/empty_info"
-            app:layout_constraintStart_toEndOf="@+id/statut_profil_title"
-            app:layout_constraintTop_toBottomOf="@+id/profile_btitle" />
+            <TextView
+                android:id="@+id/statut_profil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/empty_info"
+                app:layout_constraintStart_toEndOf="@+id/statut_profil_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/disconnect_btn"
@@ -113,7 +125,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_profile_title" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <View
             android:id="@+id/separator_item_product2"
@@ -175,6 +187,7 @@
             android:id="@+id/imageView"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:contentDescription="@string/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.015"

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -26,13 +25,13 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username_register"
-        android:layout_width="245dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/back"
         android:hint="@string/username_register"
         android:textColor="@android:color/black"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="5dp"
+        android:paddingVertical="8dp"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
@@ -44,14 +43,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_register"
-        android:layout_width="245dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:background="@drawable/back"
         android:textColor="@android:color/black"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="5dp"
+        android:paddingVertical="8dp"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
@@ -72,18 +71,19 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.834"
+        />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_confirm_register"
-        android:layout_width="245dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="@string/password_confirm"
         android:inputType="textPassword"
         android:background="@drawable/back"
         android:textColor="@android:color/black"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="5dp"
+        android:paddingVertical="8dp"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
@@ -95,14 +95,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email_register"
-        android:layout_width="245dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/back"
         android:hint="@string/login"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/black"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="5dp"
+        android:paddingVertical="8dp"
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
@@ -116,6 +116,7 @@
         android:id="@+id/imageView"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

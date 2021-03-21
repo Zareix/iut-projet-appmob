@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_product"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -32,7 +32,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/empty_info"
-                android:textColor="@android:color/primary_text_light"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,132 +49,165 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
 
-            <TextView
-                android:id="@+id/marque_product_item"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item">
+
+                <TextView
+                    android:id="@+id/categorie_title_list_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category"
+                    android:textColor="@android:color/secondary_text_light"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/categorie_list_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/empty_info"
+                    android:textColor="@android:color/tertiary_text_light"
+                    app:layout_constraintStart_toEndOf="@+id/categorie_title_list_item"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:background="@drawable/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+                <TextView
+                    android:id="@+id/added_date_item_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/empty_info"
+                    android:textColor="@android:color/tertiary_text_light"
+                    app:layout_constraintStart_toEndOf="@+id/added_date_title_item_product"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/added_date_title_item_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/added_the"
+                    android:textColor="@android:color/secondary_text_light"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
+                android:paddingHorizontal="10dp"
                 android:paddingVertical="5dp"
-                android:text="@string/empty_info"
-                android:textColor="@android:color/tertiary_text_light"
-                android:textStyle="italic"
-                app:layout_constraintStart_toEndOf="@+id/brand_title_list_item"
-                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/titre_product_item">
 
-            <TextView
-                android:id="@+id/categorie_list_item"
+                <TextView
+                    android:id="@+id/brand_title_list_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand"
+                    android:textColor="@android:color/secondary_text_light"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/marque_product_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/empty_info"
+                    android:textColor="@android:color/tertiary_text_light"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toEndOf="@+id/brand_title_list_item"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
+                android:paddingHorizontal="10dp"
                 android:paddingVertical="5dp"
-                android:text="@string/empty_info"
-                android:textColor="@android:color/tertiary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/categorie_title_list_item"
-                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
-            <TextView
-                android:id="@+id/categorie_title_list_item"
+                <TextView
+                    android:id="@+id/permeate_date_item_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/empty_info"
+                    android:textColor="@android:color/tertiary_text_light"
+                    app:layout_constraintStart_toEndOf="@+id/perime_title_product"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/perime_title_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permeates_the"
+                    android:textColor="@android:color/secondary_text_light"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="10dp"
                 android:paddingVertical="5dp"
-                android:text="@string/category"
-                android:textColor="@android:color/secondary_text_light"
+                android:background="@drawable/back"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
-            <TextView
-                android:id="@+id/added_date_title_item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/added_the"
-                android:textColor="@android:color/secondary_text_light"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categorie_title_list_item" />
+                <TextView
+                    android:id="@+id/codepostal_title_item_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/code_postal"
+                    android:textColor="@android:color/secondary_text_light"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/added_date_item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/empty_info"
-                android:textColor="@android:color/tertiary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/added_date_title_item_product"
-                app:layout_constraintTop_toBottomOf="@+id/categorie_title_list_item" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/permeates_the"
-                android:textColor="@android:color/secondary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/added_date_item_product"
-                app:layout_constraintTop_toBottomOf="@+id/categorie_title_list_item" />
-
-            <TextView
-                android:id="@+id/permeate_date_item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/empty_info"
-                android:textColor="@android:color/tertiary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/categorie_title_list_item" />
-
-            <TextView
-                android:id="@+id/codepostal_title_item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/code_postal"
-                android:textColor="@android:color/secondary_text_light"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
-
-            <TextView
-                android:id="@+id/code_postal_item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/empty_info"
-                android:textColor="@android:color/tertiary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/codepostal_title_item_product"
-                app:layout_constraintTop_toBottomOf="@+id/added_date_title_item_product" />
+                <TextView
+                    android:id="@+id/code_postal_item_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/empty_info"
+                    android:textColor="@android:color/tertiary_text_light"
+                    app:layout_constraintStart_toEndOf="@+id/codepostal_title_item_product"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/choose_btn_item_product"
@@ -185,21 +218,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/codepostal_title_item_product" />
-
-            <TextView
-                android:id="@+id/brand_title_list_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/back"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="5dp"
-                android:text="@string/brand"
-                android:textColor="@android:color/secondary_text_light"
-                app:layout_constraintStart_toEndOf="@+id/categorie_list_item"
-                app:layout_constraintTop_toBottomOf="@+id/titre_product_item" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

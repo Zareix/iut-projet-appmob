@@ -47,87 +47,84 @@ public class RegisterActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fDb = FirebaseFirestore.getInstance();
 
-        buttonValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username = mUsername.getText().toString().trim();
-                email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-                String password_confirm = mPasswordConfirm.getText().toString().trim();
+        buttonValidate.setOnClickListener(v -> {
+            username = mUsername.getText().toString().trim();
+            email = mEmail.getText().toString().trim();
+            String password = mPassword.getText().toString().trim();
+            String password_confirm = mPasswordConfirm.getText().toString().trim();
 
 
-                if (TextUtils.isEmpty(username)) {
-                    mUsername.setError("Un nom est nécessaire");
-                    return;
-                }
+            if (TextUtils.isEmpty(username)) {
+                mUsername.setError("Un nom est nécessaire");
+                return;
+            }
 
-                if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("Une adresse mail est nécessaire");
-                    return;
-                }
+            if (TextUtils.isEmpty(email)) {
+                mEmail.setError("Une adresse mail est nécessaire");
+                return;
+            }
 
-                if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Un mot de passe est nécessaire");
-                    return;
-                }
+            if (TextUtils.isEmpty(password)) {
+                mPassword.setError("Un mot de passe est nécessaire");
+                return;
+            }
 
-                if (password.length() < MIN_PASSWORD_LENGTH) {
-                    mPassword.setError("Votre mot de passe doit faire plus de " + MIN_PASSWORD_LENGTH + " caractères");
-                    return;
-                }
+            if (password.length() < MIN_PASSWORD_LENGTH) {
+                mPassword.setError("Votre mot de passe doit faire plus de " + MIN_PASSWORD_LENGTH + " caractères");
+                return;
+            }
 
-                if (TextUtils.isEmpty(password_confirm)) {
-                    mPasswordConfirm.setError("Merci de confirmer votre mot de passe");
-                    return;
-                }
+            if (TextUtils.isEmpty(password_confirm)) {
+                mPasswordConfirm.setError("Merci de confirmer votre mot de passe");
+                return;
+            }
 
-                if (!password.equals(password_confirm)) {
-                    mPasswordConfirm.setError("Les mots de passe ne correspondent pas");
-                    return;
-                }
+            if (!password.equals(password_confirm)) {
+                mPasswordConfirm.setError("Les mots de passe ne correspondent pas");
+                return;
+            }
 
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = fAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username)
-                                    .build();
+            fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = fAuth.getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username)
+                                .build();
 
-                            //TODO : Add user info to DB
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("username", username);
-                            data.put("email", email);
-                            data.put("createdAt", "to be defined");
-                            data.put("imageUrl", "to be defined");
-                            data.put("justificatifStatut", "to be defined");
-                            data.put("statut", "to be defined");
-                            fDb.collection("users").document(username).set(data)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // success
-                                        }
-                                    });
-
-                            if (user != null) {
-                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        //TODO : Add user info to DB
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("username", username);
+                        data.put("email", email);
+                        data.put("createdAt", "to be defined");
+                        data.put("imageUrl", "to be defined");
+                        data.put("justificatifStatut", "to be defined");
+                        data.put("statut", "to be defined");
+                        fDb.collection("users").document(username).set(data)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        }
+                                    public void onSuccess(Void aVoid) {
+                                        // success
                                     }
                                 });
-                            }
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+
+                        if (user != null) {
+                            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    }
+                                }
+                            });
                         }
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
+                }
+            });
         });
 
     }

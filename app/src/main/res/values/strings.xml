@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppMobProjet</string>
+    <string name="app_name">Freelicious</string>
     <string name="nav_profil">Profil</string>
     <string name="nav_add">Ajouter</string>
     <string name="nav_home">Home</string>
@@ -28,8 +28,14 @@
     <string name="permeates_the">Périme le :</string>
     <string name="category">Catégorie :</string>
     <string name="code_postal">Code Postal :</string>
-    <string name="home_title">Voici tout les produits disponibles</string>
+    <string name="brand">Marque :</string>
+    <string name="home_title">Voici tous les produits disponibles</string>
+    <string name="all_owned_product">Tous vos produits</string>
     <string name="reserver">Réserver</string>
     <string name="reservation_complete">Produit réservé !</string>
     <string name="undo">Annuler</string>
+    <string name="settings">Paramètres</string>
+    <string name="contact_receiver">Contacter le receveur</string>
+    <string name="channel_name">a channel</string>
+    <string name="channel_description">a channel description</string>
 </resources>

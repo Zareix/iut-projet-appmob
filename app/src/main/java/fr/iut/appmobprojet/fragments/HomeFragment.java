@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        Fragment allProductsFragment = new AllProductsFragment();
+        Fragment allProductsFragment = AllProductsFragment.newInstance(false);
         FragmentManager fm = getChildFragmentManager();
         fm.beginTransaction().replace(R.id.fl_wrapper, allProductsFragment, "allproducts").commit();
     }

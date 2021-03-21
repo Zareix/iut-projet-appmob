@@ -6,18 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +23,8 @@ import fr.iut.appmobprojet.data.model.Product;
  */
 public class AllProductsFragment extends Fragment {
 
+    private static final String ARG_ISDONNEUR = "isDonneur";
+    private boolean isDonneur;
 
     private List<Product> allProducts = new ArrayList<>();
 
@@ -39,14 +35,19 @@ public class AllProductsFragment extends Fragment {
     public AllProductsFragment() {
     }
 
-    public static AllProductsFragment newInstance(int columnCount) {
+    public static AllProductsFragment newInstance(boolean isDonneur) {
         AllProductsFragment fragment = new AllProductsFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_ISDONNEUR, isDonneur);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        isDonneur = args.getBoolean(ARG_ISDONNEUR);
         searchAllProducts();
     }
 
@@ -59,7 +60,10 @@ public class AllProductsFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setAdapter(new AllProductsRecyclerViewAdapter(allProducts));
+            if (isDonneur)
+                recyclerView.setAdapter(new AllProductsOwnedRecyclerViewAdapter(allProducts));
+            else
+                recyclerView.setAdapter(new AllProductsRecyclerViewAdapter(allProducts));
         }
         return view;
     }
@@ -67,12 +71,29 @@ public class AllProductsFragment extends Fragment {
     private void searchAllProducts() {
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
 
-        fDb.collection("products")
-                .whereNotEqualTo("donneur", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null))
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+        if (isDonneur) {
+            fDb.collection("products").whereEqualTo("donneur", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            allProducts.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getString("reservePar") != null)
+                                    allProducts.add(new Product(document.getId(), document.getString("codePostal"), document.getDate("dateAjout"), document.getString("donneur"), document.getString("marque"), document.getDate("peremption"), document.getString("titre"), document.getString("typeNourriture"), document.getString("typeNourriture"), document.getString("reservePar")));
+                                else
+                                    allProducts.add(new Product(document.getId(), document.getString("codePostal"), document.getDate("dateAjout"), document.getString("donneur"), document.getString("marque"), document.getDate("peremption"), document.getString("titre"), document.getString("typeNourriture"), document.getString("typeNourriture")));
+                            }
+                            Fragment currentFragment = getFragmentManager().findFragmentByTag("allproducts");
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.detach(currentFragment);
+                            fragmentTransaction.attach(currentFragment);
+                            fragmentTransaction.commit();
+                        }
+                    });
+        } else {
+            fDb.collection("products")
+                    .whereNotEqualTo("donneur", getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null))
+                    .get()
+                    .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             allProducts.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
@@ -85,7 +106,7 @@ public class AllProductsFragment extends Fragment {
                             fragmentTransaction.attach(currentFragment);
                             fragmentTransaction.commit();
                         }
-                    }
-                });
+                    });
+        }
     }
 }

@@ -1,31 +1,29 @@
 package fr.iut.appmobprojet;
 
-import android.content.Context;
+import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import fr.iut.appmobprojet.data.model.Product;
 
-public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProductsRecyclerViewAdapter.ViewHolder> {
+public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<AllProductsOwnedRecyclerViewAdapter.ViewHolder> {
 
     private final List<Product> mValues;
 
-    public AllProductsRecyclerViewAdapter(List<Product> items) {
+    public AllProductsOwnedRecyclerViewAdapter(List<Product> items) {
         mValues = items;
     }
 
@@ -48,7 +46,14 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
-        holder.mReserverButton.setOnClickListener(v -> reserver(mValues.get(position), v));
+
+        if(!mValues.get(position).getReservePar().equals("")){
+            holder.mReserverButton.setText(R.string.contact_receiver);
+            holder.mReserverButton.setOnClickListener(v -> contacterReceveur(mValues.get(position), v));
+        } else {
+            holder.mReserverButton.setVisibility(View.GONE);
+            holder.mCard.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, holder.mCard.getResources().getDisplayMetrics());
+        }
     }
 
     @Override
@@ -56,50 +61,21 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         return mValues.size();
     }
 
-    private void reserver(Product p, View v) {
-        FirebaseFirestore fDb = FirebaseFirestore.getInstance();
-        fDb.collection("products").document(p.getId()).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot doc = task.getResult();
-                if (doc.getString("reservePar") == null) {
-                    Map<String, Object> data = new HashMap<>();
-                    data.put("reservePar", v.getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
-                    fDb.collection("products").document(p.getId()).update(data).addOnSuccessListener(aVoid -> {
-                        //Toast.makeText(v.getContext(), "Produit réservé !", Toast.LENGTH_SHORT).show();
-                        Snackbar.make(v.getRootView().findViewById(R.id.home), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v)).show();
-                        notifyDonneur(p, v);
-                    });
-                } else {
-                    Toast.makeText(v.getContext(), "Ce produit est déjà réservé", Toast.LENGTH_SHORT).show();
-                }
-            }
+    private void contacterReceveur(Product p, View v) {
+        FirebaseFirestore.getInstance().collection("users").document(p.getReservePar()).get().addOnCompleteListener(task -> {
+            DocumentSnapshot receiverInfo = task.getResult();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("plain/text");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { receiverInfo.getString("email") });
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Freelicious - Votre réservation de " + p.getTitre());
+            intent.putExtra(Intent.EXTRA_TEXT, "Bonjour,\nVous avez réservé mon produit " + p.getTitre() + " sur Freelicious.\n Quand êtes-vous disponible pour le récupérer ?\n\nCordialement,\n" + p.getDonneur());
+            v.getContext().startActivity(Intent.createChooser(intent, ""));
         });
-    }
-
-    public void notifyDonneur(Product p, View v) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("reservePar", v.getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
-        data.put("produitReserve", p.getId());
-        FirebaseFirestore.getInstance().collection("users").document(p.getDonneur()).collection("notifications").document(p.getDonneur() + p.getId()).set(data);
-    }
-
-    public void annulerReservation(Product p, View v) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("reservePar", null);
-        FirebaseFirestore.getInstance().collection("products").document(p.getId()).update(data).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(v.getContext(), "Reservation annulée", Toast.LENGTH_SHORT).show();
-                annulerNotif(p);
-            }
-        });
-    }
-
-    public void annulerNotif(Product p) {
-        FirebaseFirestore.getInstance().collection("users").document(p.getDonneur()).collection("notifications").document(p.getDonneur() + p.getId()).delete();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final CardView mCard;
         public final TextView mTitleView;
         public final TextView mMarqueView;
         public final TextView mMarqueTitleView;
@@ -112,6 +88,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            mCard = view.findViewById(R.id.card_product);
             mTitleView = view.findViewById(R.id.titre_product_item);
             mMarqueView = view.findViewById(R.id.marque_product_item);
             mMarqueTitleView = view.findViewById(R.id.brand_title_list_item);

@@ -7,29 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import fr.iut.appmobprojet.AllProductsFragment;
 import fr.iut.appmobprojet.LoginActivity;
 import fr.iut.appmobprojet.R;
 
@@ -111,6 +108,9 @@ public class AccountFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     allNotif.add(document.getString("reservePar"));
+                    Fragment allProductsFragment = AllProductsFragment.newInstance(true);
+                    FragmentManager fm = getChildFragmentManager();
+                    fm.beginTransaction().replace(R.id.all_owned_fram_layout, allProductsFragment, "allproducts").commit();
                 }
             }
         });
@@ -130,10 +130,9 @@ public class AccountFragment extends Fragment {
         TextView emailV = view.findViewById(R.id.email_profil);
         TextView statutV = view.findViewById(R.id.statut_profil);
 
-        EditText mEmail = view.findViewById(R.id.change_email);
-        EditText mPhoto = view.findViewById(R.id.change_picture);
-        EditText mJustificatif = view.findViewById(R.id.justificatif_statut);
-        Button buttonValidate = view.findViewById(R.id.validate_btn);
+        view.findViewById(R.id.settings_btn_profile).setOnClickListener(v ->
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, new SettingsFragment(), "currentFragment").commit()
+        );
 
         view.findViewById(R.id.disconnect_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,39 +155,5 @@ public class AccountFragment extends Fragment {
             newNotif.setText(n);
             notifications.addView(newNotif);
         }*/
-
-        buttonValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Map<String, Object> data = new HashMap<>();
-
-                if (!mEmail.getText().toString().equals("")) {
-                    data.put("email", mEmail.getText().toString());
-                    user.updateEmail((String) data.get("email"))
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    // complete
-                                }
-                            });
-                    emailV.setText((String) data.get("email"));
-                }
-
-                if (!mPhoto.getText().toString().equals(""))
-                    data.put("imageUrl", "to be defined");
-
-                if (!mJustificatif.getText().toString().equals(""))
-                    data.put("justificatifStatut", mJustificatif.getText().toString());
-
-                FirebaseFirestore.getInstance().collection("users").document(getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null)).update(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getContext(), "Informations modifiées", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
-        });
     }
 }

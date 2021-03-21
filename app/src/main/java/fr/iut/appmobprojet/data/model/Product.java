@@ -17,6 +17,7 @@ public class Product {
     private String titre;
     private String typeNourriture;
     private String codePostal;
+    private String reservePar;
 
     public Product(String id, String codePostal, Date dateAjout, String donneur, String marque, Date peremption, String titre, String typeNourriture, String categorie) {
         this.id = id;
@@ -28,6 +29,24 @@ public class Product {
         this.titre = titre;
         this.typeNourriture = typeNourriture;
         this.categorie = categorie;
+        this.reservePar = "";
+    }
+
+    public Product(String id, String codePostal, Date dateAjout, String donneur, String marque, Date peremption, String titre, String typeNourriture, String categorie, String estReservePar) {
+        this.id = id;
+        this.codePostal = codePostal;
+        this.dateAjout = dateFormat.format(dateAjout);
+        this.donneur = donneur;
+        this.marque = marque;
+        this.peremption = dateFormat.format(peremption);
+        this.titre = titre;
+        this.typeNourriture = typeNourriture;
+        this.categorie = categorie;
+        this.reservePar = estReservePar;
+    }
+
+    public String getReservePar() {
+        return reservePar;
     }
 
     public String getId() {
@@ -65,4 +84,5 @@ public class Product {
     public String getCategorie() {
         return categorie;
     }
+
 }

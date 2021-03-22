@@ -17,8 +17,6 @@ import fr.iut.appmobprojet.fragments.HomeFragment;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = "a channel id";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Redirige vers le fragment choisi
      *
-     * @param f
+     * @param f : fragment à afficher
      */
     private void makeCurrentFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();

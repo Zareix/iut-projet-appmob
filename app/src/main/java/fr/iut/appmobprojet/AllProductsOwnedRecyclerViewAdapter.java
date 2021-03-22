@@ -54,7 +54,7 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         holder.mCategorieView.setText(mValues.get(position).getCategorie());
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
-        if(mValues.get(position).getPeremptionDate().before(new Date())){
+        if (mValues.get(position).getPeremptionDate().before(new Date())) {
             holder.mPermeateDateView.setTextColor(ContextCompat.getColor(holder.mPermeateDateView.getContext(), R.color.red));
             holder.mTitleView.setTextColor(ContextCompat.getColor(holder.mPermeateDateView.getContext(), R.color.red));
         }

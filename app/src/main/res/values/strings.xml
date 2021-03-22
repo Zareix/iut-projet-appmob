@@ -41,4 +41,10 @@
     <string name="channel_description">a channel description</string>
     <string name="logo">Logo freelicious</string>
     <string name="delete">Supprimer</string>
+    <string name="titre_produit_placeholder_add">Titre du produit</string>
+    <string name="marque_produit_placeholder_add">Marque du produit</string>
+    <string name="date_peremption_placeholder_add">Date de péremption</string>
+    <string name="title_add">Ajouter un produit</string>
+    <string name="code_postal_placeholder_add">Code postal</string>
+    <string name="peremption_btn_text_add">Péremption</string>
 </resources>

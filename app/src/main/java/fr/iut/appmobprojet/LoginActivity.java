@@ -79,11 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void handleRedirectToRegister(View v) {
-        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-        finish();
-    }
-
     @Override
     public void onBackPressed() {
         Toast.makeText(LoginActivity.this, "Faites retour une nouvelle fois pour quitter", Toast.LENGTH_SHORT).show();

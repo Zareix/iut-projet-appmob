@@ -62,7 +62,7 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.addProduct_type);
+        Spinner spinner = view.findViewById(R.id.addProduct_type);
         textPeremption = view.findViewById(R.id.textPeremption);
         Button buttonPeremption = view.findViewById(R.id.buttonPeremption);
         Button buttonValiderAddProduct = view.findViewById(R.id.buttonValiderAddProduct);
@@ -114,7 +114,6 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         typeNourriture = parent.getItemAtPosition(position).toString();
-        Toast.makeText(getContext(), typeNourriture, Toast.LENGTH_SHORT).show();
     }
 
     @Override

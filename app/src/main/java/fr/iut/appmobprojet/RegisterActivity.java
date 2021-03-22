@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
@@ -86,42 +85,31 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
-                        FirebaseUser user = fAuth.getCurrentUser();
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(username)
-                                .build();
+            fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Utilisateur créé avec succès", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = fAuth.getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(username)
+                            .build();
 
-                        //TODO : Add user info to DB
-                        Map<String, Object> data = new HashMap<>();
-                        data.put("username", username);
-                        data.put("email", email);
-                        data.put("createdAt", Timestamp.now());
-                        data.put("imageUrl", "to be defined");
-                        data.put("justificatifStatut", "to be defined");
-                        data.put("statut", "to be defined");
-                        fDb.collection("users").document(username).set(data)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        // success
-                                    }
-                                });
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("username", username);
+                    data.put("email", email);
+                    data.put("createdAt", Timestamp.now());
+                    data.put("justificatifStatut", "none");
+                    data.put("statut", "à confirmer");
+                    fDb.collection("users").document(username).set(data);
 
-                        if (user != null) {
-                            user.updateProfile(profileUpdates).addOnCompleteListener(task1 -> {
-                                if (task1.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                }
-                            });
-                        }
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+                    if (user != null) {
+                        user.updateProfile(profileUpdates).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                        });
                     }
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
                 }
             });
         });

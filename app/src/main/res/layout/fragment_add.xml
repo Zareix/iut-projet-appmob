@@ -15,17 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addProduct_titre"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:hint="Titre du produit" />
+                android:hint="@string/titre_produit_placeholder_add" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +45,7 @@
                 android:id="@+id/addProduct_marque"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:hint="Marque du produit" />
+                android:hint="@string/marque_produit_placeholder_add" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,10 +63,10 @@
         <TextView
             android:id="@+id/textPeremption"
             android:layout_width="181dp"
-            android:layout_height="53dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="23dp"
-            android:text="Date de péremption"
+            android:layout_marginTop="40dp"
+            android:text="@string/date_peremption_placeholder_add"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addProduct_type" />
@@ -74,10 +74,10 @@
         <Button
             android:id="@+id/buttonPeremption"
             android:layout_width="132dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="23dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="40dp"
-            android:text="peremption"
+            android:text="@string/peremption_btn_text_add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addProduct_type" />
 
@@ -86,17 +86,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPeremption">
+            app:layout_constraintTop_toBottomOf="@+id/buttonPeremption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addProduct_codePostal"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:hint="Code postal" />
+                android:hint="@string/code_postal_placeholder_add" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,13 +104,25 @@
             android:id="@+id/buttonValiderAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:backgroundTint="@color/green"
-            android:text="Valider"
+            android:text="@string/validate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/codePostalTitleLayout" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/title_add"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

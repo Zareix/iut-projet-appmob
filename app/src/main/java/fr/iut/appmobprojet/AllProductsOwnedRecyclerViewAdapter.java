@@ -1,7 +1,6 @@
 package fr.iut.appmobprojet;
 
 import android.content.Intent;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -41,7 +41,7 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mTitleView.setText(mValues.get(position).getTitre());
-        if(mValues.get(position).getMarque().equals("")){
+        if (mValues.get(position).getMarque().equals("")) {
             holder.mMarqueTitleView.setVisibility(View.GONE);
         } else
             holder.mMarqueView.setText(mValues.get(position).getMarque());
@@ -49,12 +49,16 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
+        holder.mReserverButton.setVisibility(View.GONE);
 
-        if(!mValues.get(position).getReservePar().equals("")){
-            holder.mReserverButton.setText(R.string.contact_receiver);
-            holder.mReserverButton.setOnClickListener(v -> contacterReceveur(mValues.get(position), v));
+        if (!mValues.get(position).getReservePar().equals("")) {
+            holder.mContactButton.setOnClickListener(v -> contacterReceveur(mValues.get(position), v));
         } else {
-            holder.mReserverButton.setVisibility(View.GONE);
+            holder.mContactButton.setVisibility(View.GONE);
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(holder.constraintLayout);
+            constraintSet.connect(R.id.imageView, ConstraintSet.TOP, R.id.linearLayout_item_product, ConstraintSet.TOP, 8);
+            constraintSet.applyTo(holder.constraintLayout);
         }
     }
 
@@ -68,7 +72,7 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
             DocumentSnapshot receiverInfo = task.getResult();
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("plain/text");
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { receiverInfo.getString("email") });
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{receiverInfo.getString("email")});
             intent.putExtra(Intent.EXTRA_SUBJECT, "Freelicious - Votre réservation de " + p.getTitre());
             intent.putExtra(Intent.EXTRA_TEXT, "Bonjour,\nVous avez réservé mon produit " + p.getTitre() + " sur Freelicious.\n Quand êtes-vous disponible pour le récupérer ?\n\nCordialement,\n" + p.getDonneur());
             v.getContext().startActivity(Intent.createChooser(intent, ""));
@@ -85,6 +89,9 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         public final TextView mPermeateDateView;
         public final TextView mCodePostalView;
         public final Button mReserverButton;
+        public final Button mDeleteButton;
+        public final Button mContactButton;
+        public final ConstraintLayout constraintLayout;
 
         public ViewHolder(View view) {
             super(view);
@@ -97,6 +104,9 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
             mPermeateDateView = view.findViewById(R.id.permeate_date_item_product);
             mCodePostalView = view.findViewById(R.id.code_postal_item_product);
             mReserverButton = view.findViewById(R.id.reserve_btn_item_product);
+            mDeleteButton = view.findViewById(R.id.suppr_btn_item_product);
+            mContactButton = view.findViewById(R.id.contact_btn_item_product);
+            constraintLayout = view.findViewById(R.id.main_constraint_layout_item_product);
         }
 
         @NonNull

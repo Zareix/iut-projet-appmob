@@ -9,10 +9,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -51,7 +54,9 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
-        holder.mReserverButton.setOnClickListener(v -> reserver(mValues.get(position), v));
+        holder.mReserverButton.setOnClickListener(v -> reserver(mValues.get(position), v , position));
+        holder.mDeleteButton.setVisibility(View.GONE);
+        holder.mContactButton.setVisibility(View.GONE);
     }
 
     @Override
@@ -59,7 +64,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         return mValues.size();
     }
 
-    private void reserver(Product p, View v) {
+    private void reserver(Product p, View v, int position) {
         FirebaseFirestore fDb = FirebaseFirestore.getInstance();
         fDb.collection("products").document(p.getId()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -68,8 +73,9 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
                     Map<String, Object> data = new HashMap<>();
                     data.put("reservePar", v.getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
                     fDb.collection("products").document(p.getId()).update(data).addOnSuccessListener(aVoid -> {
-                        //Toast.makeText(v.getContext(), "Produit réservé !", Toast.LENGTH_SHORT).show();
-                        Snackbar.make(v.getRootView().findViewById(R.id.home), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v)).show();
+                        Snackbar.make(v.getRootView().findViewById(R.id.home), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v, position)).show();
+                        mValues.remove(position);
+                        this.notifyItemRemoved(position);
                     });
                 } else {
                     Toast.makeText(v.getContext(), "Ce produit est déjà réservé", Toast.LENGTH_SHORT).show();
@@ -78,11 +84,13 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         });
     }
 
-    public void annulerReservation(Product p, View v) {
+    public void annulerReservation(Product p, View v, int position) {
         Map<String, Object> data = new HashMap<>();
-        data.put("reservePar", null);
+        data.put("reservePar", FieldValue.delete());
         FirebaseFirestore.getInstance().collection("products").document(p.getId()).update(data).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                mValues.add(position, p);
+                this.notifyItemInserted(position);
                 Toast.makeText(v.getContext(), "Reservation annulée", Toast.LENGTH_SHORT).show();
             }
         });
@@ -98,6 +106,8 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         public final TextView mPermeateDateView;
         public final TextView mCodePostalView;
         public final Button mReserverButton;
+        public final Button mDeleteButton;
+        public final Button mContactButton;
 
         public ViewHolder(View view) {
             super(view);
@@ -110,6 +120,9 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
             mPermeateDateView = view.findViewById(R.id.permeate_date_item_product);
             mCodePostalView = view.findViewById(R.id.code_postal_item_product);
             mReserverButton = view.findViewById(R.id.reserve_btn_item_product);
+            mDeleteButton = view.findViewById(R.id.suppr_btn_item_product);
+            mContactButton = view.findViewById(R.id.contact_btn_item_product);
+
         }
 
         @NonNull

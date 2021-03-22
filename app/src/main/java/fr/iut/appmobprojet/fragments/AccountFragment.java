@@ -15,15 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.iut.appmobprojet.AllProductsFragment;
 import fr.iut.appmobprojet.LoginActivity;
@@ -89,7 +84,7 @@ public class AccountFragment extends Fragment {
         statutV.setText(statut);
 
         view.findViewById(R.id.settings_btn_profile).setOnClickListener(v ->
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.allproducts_home, new SettingsFragment(), "currentFragment").commit()
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.for_fragment_main, new SettingsFragment(), "currentFragment").commit()
         );
 
         view.findViewById(R.id.disconnect_btn).setOnClickListener(v -> {

@@ -13,10 +13,12 @@ public class Product {
 
     private String id;
     private String dateAjout;
+    private Date dateAjoutDate;
     private String categorie;
     private String donneur;
     private String marque;
     private String peremption;
+    private Date peremptionDate;
     private String titre;
     private String typeNourriture;
     private String codePostal;
@@ -26,9 +28,11 @@ public class Product {
         this.id = id;
         this.codePostal = codePostal;
         this.dateAjout = dateFormat.format(dateAjout);
+        this.dateAjoutDate = dateAjout;
         this.donneur = donneur;
         this.marque = marque;
         this.peremption = dateFormat.format(peremption);
+        this.peremptionDate = peremption;
         this.titre = titre;
         this.typeNourriture = typeNourriture;
         this.categorie = categorie;
@@ -39,9 +43,11 @@ public class Product {
         this.id = id;
         this.codePostal = codePostal;
         this.dateAjout = dateFormat.format(dateAjout);
+        this.dateAjoutDate = dateAjout;
         this.donneur = donneur;
         this.marque = marque;
         this.peremption = dateFormat.format(peremption);
+        this.peremptionDate = peremption;
         this.titre = titre;
         this.typeNourriture = typeNourriture;
         this.categorie = categorie;
@@ -64,6 +70,10 @@ public class Product {
         return dateAjout;
     }
 
+    public Date getDateAjoutDate() {
+        return dateAjoutDate;
+    }
+
     public String getDonneur() {
         return donneur;
     }
@@ -74,6 +84,10 @@ public class Product {
 
     public String getPeremption() {
         return peremption;
+    }
+
+    public Date getPeremptionDate() {
+        return peremptionDate;
     }
 
     public String getTitre() {

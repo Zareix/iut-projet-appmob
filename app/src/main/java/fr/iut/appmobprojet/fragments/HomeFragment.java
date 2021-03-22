@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -29,7 +27,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Fragment allProductsFragment = AllProductsFragment.newInstance(false);
         FragmentManager fm = getChildFragmentManager();
-        fm.beginTransaction().replace(R.id.allproducts_home, allProductsFragment, "allproducts").commit();
+        fm.beginTransaction().replace(R.id.for_fragment_main, allProductsFragment, "allproducts").commit();
     }
 
     @Override

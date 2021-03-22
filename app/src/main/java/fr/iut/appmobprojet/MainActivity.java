@@ -53,6 +53,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void makeCurrentFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.allproducts_home, f, "currentFragment").commit();
+        fm.beginTransaction().replace(R.id.for_fragment_main, f, "currentFragment").commit();
     }
 }

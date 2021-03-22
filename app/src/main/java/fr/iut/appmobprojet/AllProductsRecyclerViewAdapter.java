@@ -9,8 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -54,7 +52,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
-        holder.mReserverButton.setOnClickListener(v -> reserver(mValues.get(position), v , position));
+        holder.mReserverButton.setOnClickListener(v -> reserver(mValues.get(position), v, position));
         holder.mDeleteButton.setVisibility(View.GONE);
         holder.mContactButton.setVisibility(View.GONE);
     }
@@ -73,7 +71,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
                     Map<String, Object> data = new HashMap<>();
                     data.put("reservePar", v.getContext().getSharedPreferences("user", Context.MODE_PRIVATE).getString("username", null));
                     fDb.collection("products").document(p.getId()).update(data).addOnSuccessListener(aVoid -> {
-                        Snackbar.make(v.getRootView().findViewById(R.id.home), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v, position)).show();
+                        Snackbar.make(v.getRootView().findViewById(R.id.home_fragment), R.string.reservation_complete, Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerReservation(p, v, position)).show();
                         mValues.remove(position);
                         this.notifyItemRemoved(position);
                     });

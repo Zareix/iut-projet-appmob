@@ -24,9 +24,8 @@ import fr.iut.appmobprojet.data.model.Product;
 public class AllProductsFragment extends Fragment {
 
     private static final String ARG_ISDONNEUR = "isDonneur";
-    private boolean isDonneur;
-
     private final List<Product> allProducts = new ArrayList<>();
+    private boolean isDonneur;
 
     public AllProductsFragment() {
     }

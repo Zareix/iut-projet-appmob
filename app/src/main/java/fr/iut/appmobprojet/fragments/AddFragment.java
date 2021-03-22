@@ -20,17 +20,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,9 +38,8 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
 
     private static TextView textPeremption;
     private static String typeNourriture;
-    private Timestamp datePeremptionBdd;
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Timestamp datePeremptionBdd;
 
     public AddFragment() {
     }
@@ -80,12 +74,7 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
 
         spinner.setOnItemSelectedListener(this);
 
-        buttonPeremption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
+        buttonPeremption.setOnClickListener(v -> showDatePickerDialog());
 
         EditText titre, marque, codePostal;
 
@@ -103,25 +92,15 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
             data.put("titre", titre.getText().toString().trim());
             data.put("typeNourriture", typeNourriture);
 
-
             db.collection("products")
                     .add(data)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d("NewProductActivity", "DocumentSnapshot written with ID: " + documentReference.getId());
-                            Toast.makeText(getContext(), "Produit ajouté !", Toast.LENGTH_SHORT).show();
-                            titre.getText().clear();
-                            marque.getText().clear();
-                            codePostal.getText().clear();
-                            textPeremption.setText("Date de péremption");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("NewProductActivity", "Error adding document", e);
-                        }
+                    .addOnSuccessListener(documentReference -> {
+                        Log.d("NewProductActivity", "DocumentSnapshot written with ID: " + documentReference.getId());
+                        Toast.makeText(getContext(), "Produit ajouté !", Toast.LENGTH_SHORT).show();
+                        titre.getText().clear();
+                        marque.getText().clear();
+                        codePostal.getText().clear();
+                        textPeremption.setText("Date de péremption");
                     });
         });
 
@@ -149,7 +128,7 @@ public class AddFragment extends Fragment implements AdapterView.OnItemSelectedL
         String date = dayOfMonth + "/" + month + "/" + year;
         textPeremption.setText(date);
         try {
-            datePeremptionBdd= new Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(dayOfMonth + "/" + month +"/" + year));
+            datePeremptionBdd = new Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(dayOfMonth + "/" + month + "/" + year));
         } catch (ParseException e) {
             e.printStackTrace();
         }

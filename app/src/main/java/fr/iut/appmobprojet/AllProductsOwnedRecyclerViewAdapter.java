@@ -6,16 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import fr.iut.appmobprojet.data.model.Product;
 
@@ -51,13 +55,15 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
         holder.mReserverButton.setVisibility(View.GONE);
 
+        holder.mDeleteButton.setOnClickListener(v -> supprimerProduit(mValues.get(position), v, position));
+
         if (!mValues.get(position).getReservePar().equals("")) {
             holder.mContactButton.setOnClickListener(v -> contacterReceveur(mValues.get(position), v));
         } else {
             holder.mContactButton.setVisibility(View.GONE);
             ConstraintSet constraintSet = new ConstraintSet();
             constraintSet.clone(holder.constraintLayout);
-            constraintSet.connect(R.id.imageView, ConstraintSet.TOP, R.id.linearLayout_item_product, ConstraintSet.TOP, 8);
+            constraintSet.connect(R.id.suppr_btn_item_product, ConstraintSet.TOP, R.id.linearLayout_item_product, ConstraintSet.BOTTOM, 8);
             constraintSet.applyTo(holder.constraintLayout);
         }
     }
@@ -77,6 +83,41 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
             intent.putExtra(Intent.EXTRA_TEXT, "Bonjour,\nVous avez réservé mon produit " + p.getTitre() + " sur Freelicious.\n Quand êtes-vous disponible pour le récupérer ?\n\nCordialement,\n" + p.getDonneur());
             v.getContext().startActivity(Intent.createChooser(intent, ""));
         });
+    }
+
+    private void supprimerProduit(Product p, View v, int position) {
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .document(p.getId())
+                .delete()
+                .addOnSuccessListener(command -> {
+                    Snackbar.make(v.getRootView().findViewById(R.id.account_fragment), "Produit supprimé !", Snackbar.LENGTH_LONG).setAction(R.string.undo, v1 -> annulerSuppression(p, v, position)).show();
+                    mValues.remove(position);
+                    this.notifyItemRemoved(position);
+                });
+    }
+
+    private void annulerSuppression(Product p, View v, int position) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("codePostal", p.getCodePostal());
+        data.put("dateAjout", p.getDateAjoutDate());
+        data.put("donneur", p.getDonneur());
+        data.put("marque", p.getMarque());
+        data.put("peremption", p.getPeremptionDate());
+        data.put("titre", p.getTitre());
+        data.put("typeNourriture", p.getTypeNourriture());
+        if (!p.getReservePar().equals(""))
+            data.put("reservePar", p.getReservePar());
+
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .document(p.getId())
+                .set(data)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(v.getContext(), "Suppression annulée !", Toast.LENGTH_SHORT).show();
+                    mValues.add(position, p);
+                    this.notifyItemInserted(position);
+                });
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

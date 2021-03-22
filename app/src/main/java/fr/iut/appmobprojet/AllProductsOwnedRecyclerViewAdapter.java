@@ -55,7 +55,6 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
             holder.mReserverButton.setOnClickListener(v -> contacterReceveur(mValues.get(position), v));
         } else {
             holder.mReserverButton.setVisibility(View.GONE);
-            holder.mCard.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, holder.mCard.getResources().getDisplayMetrics());
         }
     }
 
@@ -78,7 +77,6 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final CardView mCard;
         public final TextView mTitleView;
         public final TextView mMarqueView;
         public final TextView mMarqueTitleView;
@@ -91,7 +89,6 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mCard = view.findViewById(R.id.card_product);
             mTitleView = view.findViewById(R.id.titre_product_item);
             mMarqueView = view.findViewById(R.id.marque_product_item);
             mMarqueTitleView = view.findViewById(R.id.brand_title_list_item);
@@ -99,7 +96,7 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
             mAddedDateView = view.findViewById(R.id.added_date_item_product);
             mPermeateDateView = view.findViewById(R.id.permeate_date_item_product);
             mCodePostalView = view.findViewById(R.id.code_postal_item_product);
-            mReserverButton = view.findViewById(R.id.choose_btn_item_product);
+            mReserverButton = view.findViewById(R.id.reserve_btn_item_product);
         }
 
         @NonNull

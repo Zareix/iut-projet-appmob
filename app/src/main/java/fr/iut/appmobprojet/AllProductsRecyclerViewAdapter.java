@@ -109,7 +109,7 @@ public class AllProductsRecyclerViewAdapter extends RecyclerView.Adapter<AllProd
             mAddedDateView = view.findViewById(R.id.added_date_item_product);
             mPermeateDateView = view.findViewById(R.id.permeate_date_item_product);
             mCodePostalView = view.findViewById(R.id.code_postal_item_product);
-            mReserverButton = view.findViewById(R.id.choose_btn_item_product);
+            mReserverButton = view.findViewById(R.id.reserve_btn_item_product);
         }
 
         @NonNull

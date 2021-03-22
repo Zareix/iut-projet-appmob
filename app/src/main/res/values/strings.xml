@@ -40,4 +40,5 @@
     <string name="channel_name">a channel</string>
     <string name="channel_description">a channel description</string>
     <string name="logo">Logo freelicious</string>
+    <string name="delete">Supprimer</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="16dp"
         android:paddingHorizontal="15dp"
         android:paddingVertical="5dp"
         android:text="@string/register_title"
@@ -19,13 +19,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username_register"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:background="@drawable/back"
         android:hint="@string/username_register"
         android:paddingHorizontal="15dp"
@@ -33,16 +34,15 @@
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintTop_toBottomOf="@+id/register" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_register"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/back"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -51,30 +51,27 @@
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintTop_toBottomOf="@+id/email_register" />
 
     <Button
         android:id="@+id/validate_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/validate"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/password_confirm_register" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_confirm_register"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/back"
         android:hint="@string/password_confirm"
         android:inputType="textPassword"
@@ -83,16 +80,15 @@
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintTop_toBottomOf="@+id/password_register" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email_register"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/back"
         android:hint="@string/login"
         android:inputType="textEmailAddress"
@@ -101,22 +97,19 @@
         android:textColorHighlight="@android:color/darker_gray"
         android:textColorHint="@android:color/darker_gray"
         android:textColorLink="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintTop_toBottomOf="@+id/username_register" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117"
         app:srcCompat="@drawable/freelicious" />
 </androidx.constraintlayout.widget.ConstraintLayout>

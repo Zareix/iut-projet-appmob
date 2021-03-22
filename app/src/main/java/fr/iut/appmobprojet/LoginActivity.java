@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
             fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Connexion réussi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                     getApplicationContext().getSharedPreferences("user", MODE_PRIVATE).edit().putString("username", task.getResult().getUser().getDisplayName()).apply();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();

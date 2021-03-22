@@ -11,12 +11,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,10 @@ public class AllProductsOwnedRecyclerViewAdapter extends RecyclerView.Adapter<Al
         holder.mCategorieView.setText(mValues.get(position).getCategorie());
         holder.mAddedDateView.setText(mValues.get(position).getDateAjout());
         holder.mPermeateDateView.setText(mValues.get(position).getPeremption());
+        if(mValues.get(position).getPeremptionDate().before(new Date())){
+            holder.mPermeateDateView.setTextColor(ContextCompat.getColor(holder.mPermeateDateView.getContext(), R.color.red));
+            holder.mTitleView.setTextColor(ContextCompat.getColor(holder.mPermeateDateView.getContext(), R.color.red));
+        }
         holder.mCodePostalView.setText(mValues.get(position).getCodePostal());
         holder.mReserverButton.setVisibility(View.GONE);
 

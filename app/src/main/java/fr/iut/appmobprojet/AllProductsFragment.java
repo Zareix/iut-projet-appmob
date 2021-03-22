@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.iut.appmobprojet.data.model.Product;
@@ -24,6 +26,7 @@ import fr.iut.appmobprojet.data.model.Product;
 public class AllProductsFragment extends Fragment {
 
     private static final String ARG_ISDONNEUR = "isDonneur";
+
     private final List<Product> allProducts = new ArrayList<>();
     private boolean isDonneur;
 
@@ -94,7 +97,7 @@ public class AllProductsFragment extends Fragment {
                         if (task.isSuccessful()) {
                             allProducts.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getString("reservePar") == null)
+                                if (document.getString("reservePar") == null && document.getDate("peremption").after(new Date()))
                                     allProducts.add(new Product(document.getId(), document.getString("codePostal"), document.getDate("dateAjout"), document.getString("donneur"), document.getString("marque"), document.getDate("peremption"), document.getString("titre"), document.getString("typeNourriture"), document.getString("typeNourriture")));
                             }
                             Fragment currentFragment = getFragmentManager().findFragmentByTag("allproducts");

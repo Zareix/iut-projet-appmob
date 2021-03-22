@@ -60,6 +60,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/marqueTitleLayout" />
 
+        <TextView
+            android:id="@+id/textPeremption"
+            android:layout_width="181dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="23dp"
+            android:text="Date de péremption"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addProduct_type" />
+
+        <Button
+            android:id="@+id/buttonPeremption"
+            android:layout_width="132dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="40dp"
+            android:text="peremption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addProduct_type" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codePostalTitleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textPeremption">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addProduct_codePostal"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="Code postal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonValiderAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="#419C45"
+            android:text="Valider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/codePostalTitleLayout" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

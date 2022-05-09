@@ -3,6 +3,6 @@
 IUT de Paris – Rives de Seine (Descartes)
 
 ## Author :
-- Moron Lola
-- Gonçalves Catarino Raphaël
-- Zhang William
+- Lola-Marie
+- Raphaël
+- William
